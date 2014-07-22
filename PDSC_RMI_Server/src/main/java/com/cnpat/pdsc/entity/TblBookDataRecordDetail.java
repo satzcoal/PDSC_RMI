@@ -2,6 +2,7 @@ package com.cnpat.pdsc.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,6 +17,7 @@ public class TblBookDataRecordDetail implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 6272580675775688199L;
 
+	@Id
 	private int opType;
 	private long bookRecordId;
 	private int dataType;

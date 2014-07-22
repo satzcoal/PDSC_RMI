@@ -1,31 +1,25 @@
 package com.cnpat.pdsc.service;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.cnpat.pdsc.entity.TblBookDataContent;
 
 public class BookService {
 
-	protected static SessionFactory sessionFactory = null;
+	private HibernateTemplate ht;
 
-	protected static void setUp() throws Exception {
-		// A SessionFactory is set up once for an application
-		sessionFactory = new Configuration().configure().buildSessionFactory();
+	public void bookData() {
+		TblBookDataContent bdc = new TblBookDataContent();
+		bdc.setDataType(2);
+		bdc.setId(4);
+		ht.save(bdc);
 	}
 
-	public static void main(String... args) throws Exception {
+	public HibernateTemplate getHt() {
+		return ht;
+	}
 
-		setUp();
-
-		TblBookDataContent bdc = new TblBookDataContent();
-		bdc.setDataType(1);
-		bdc.setId(1);
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(bdc);
-		session.getTransaction().commit();
-		session.close();
+	public void setHt(HibernateTemplate ht) {
+		this.ht = ht;
 	}
 }

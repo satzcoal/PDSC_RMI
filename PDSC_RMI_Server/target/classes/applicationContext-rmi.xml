@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="indexBookService" class="com.cnpat.pdsc.rmi.impl.IndexBookServiceImpl">
+		<property name="service" ref="bookService" />
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<!-- does not necessarily have to be the same name as the bean to be exported -->
+		<property name="serviceName" value="IndexBookService" />
+		<property name="service" ref="indexBookService" />
+		<property name="serviceInterface" value="com.cnpat.pdsc.rmi.IndexBookService" />
+		<property name="registryPort" value="1199" />
+	</bean>
+</beans>
