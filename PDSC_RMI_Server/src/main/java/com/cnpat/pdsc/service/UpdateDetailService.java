@@ -25,9 +25,9 @@ public class UpdateDetailService {
 		UpdateDetailOutMsg res = new UpdateDetailOutMsg();
 		List<CommonEntry> list = new LinkedList<CommonEntry>();
 		
-		res.setResList();
+		res.setResList(list);
 
-		return null;
+		return res;
 	}
 
 	public HibernateTemplate getHt() {
