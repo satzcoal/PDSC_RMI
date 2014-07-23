@@ -29,5 +29,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PDSC_RMI_Server_if"/>
+	<classpathentry kind="lib" path="C:/Users/Lee/Desktop/rmiBean.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lee/Desktop/rmiService.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

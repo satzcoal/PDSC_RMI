@@ -1,9 +1,15 @@
 package com.cnpat.pdsc.service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.orm.hibernate4.HibernateTemplate;
+
+import cn.com.cnpat.cprs.rmi.bean.CurrentBean;
 
 import com.cnpat.pdsc.rmi.msg.UpdateDetailInMsg;
 import com.cnpat.pdsc.rmi.msg.UpdateDetailOutMsg;
+import com.cnpat.pdsc.rmi.msg.entry.CommonEntry;
 
 public class UpdateDetailService {
 
@@ -11,10 +17,16 @@ public class UpdateDetailService {
 
 	public UpdateDetailOutMsg getUpdateDetail(UpdateDetailInMsg req) {
 		int datatype = req.getDataType();
+		CurrentBean cb = new CurrentBean();
 		switch (datatype) {
-		case:
-			
+
 		}
+
+		UpdateDetailOutMsg res = new UpdateDetailOutMsg();
+		List<CommonEntry> list = new LinkedList<CommonEntry>();
+		
+		res.setResList();
+
 		return null;
 	}
 
