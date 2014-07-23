@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_BookDataRecordDetail", catalog = "PDSC_Management_DB")
-public class TblBookDataRecordDetail implements java.io.Serializable {
+public class BookDataRecordDetail implements java.io.Serializable {
 
 	/**
 	 * 
@@ -22,10 +22,10 @@ public class TblBookDataRecordDetail implements java.io.Serializable {
 	private long bookRecordId;
 	private int dataType;
 
-	public TblBookDataRecordDetail() {
+	public BookDataRecordDetail() {
 	}
 
-	public TblBookDataRecordDetail(int opType, long bookRecordId, int dataType) {
+	public BookDataRecordDetail(int opType, long bookRecordId, int dataType) {
 		this.opType = opType;
 		this.bookRecordId = bookRecordId;
 		this.dataType = dataType;

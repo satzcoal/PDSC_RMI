@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_UpdatePatentPic", catalog = "PDSC_Management_DB")
-public class TblUpdatePatentPic implements java.io.Serializable {
+public class UpdatePatentPic implements java.io.Serializable {
 
 	private static final long serialVersionUID = -3978686266417234381L;
 
@@ -18,10 +18,10 @@ public class TblUpdatePatentPic implements java.io.Serializable {
 	private long globalSeq;
 	private String updateId;
 
-	public TblUpdatePatentPic() {
+	public UpdatePatentPic() {
 	}
 
-	public TblUpdatePatentPic(long bibNowSeq, long globalSeq, String updateId) {
+	public UpdatePatentPic(long bibNowSeq, long globalSeq, String updateId) {
 		this.bibNowSeq = bibNowSeq;
 		this.globalSeq = globalSeq;
 		this.updateId = updateId;

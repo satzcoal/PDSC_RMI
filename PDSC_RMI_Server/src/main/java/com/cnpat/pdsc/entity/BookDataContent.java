@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_BookDataContent", catalog = "PDSC_Management_DB")
-public class TblBookDataContent implements java.io.Serializable {
+public class BookDataContent implements java.io.Serializable {
 
 	private static final long serialVersionUID = -1001872973458953512L;
 

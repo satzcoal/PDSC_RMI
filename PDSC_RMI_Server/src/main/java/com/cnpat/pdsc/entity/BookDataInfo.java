@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_BookDataInfo", catalog = "PDSC_Management_DB")
-public class TblBookDataInfo implements java.io.Serializable {
+public class BookDataInfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8138325569112691658L;
 
@@ -26,10 +26,10 @@ public class TblBookDataInfo implements java.io.Serializable {
 	private Date createTime;
 	private Date modifyTime;
 
-	public TblBookDataInfo() {
+	public BookDataInfo() {
 	}
 
-	public TblBookDataInfo(long bookId, String sourceIp, int status,
+	public BookDataInfo(long bookId, String sourceIp, int status,
 			Date createTime, Date modifyTime) {
 		this.bookId = bookId;
 		this.sourceIp = sourceIp;
@@ -38,7 +38,7 @@ public class TblBookDataInfo implements java.io.Serializable {
 		this.modifyTime = modifyTime;
 	}
 
-	public TblBookDataInfo(long bookId, String sourceIp, int status,
+	public BookDataInfo(long bookId, String sourceIp, int status,
 			String descript, Date createTime, Date modifyTime) {
 		this.bookId = bookId;
 		this.sourceIp = sourceIp;

@@ -13,17 +13,17 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_BookDataRecord", catalog = "PDSC_Management_DB")
-public class TblBookDataRecord implements java.io.Serializable {
+public class BookDataRecord implements java.io.Serializable {
 
 	private static final long serialVersionUID = -5174323993825961838L;
 	
 	private long bookRecordId;
 	private Date createTime;
 
-	public TblBookDataRecord() {
+	public BookDataRecord() {
 	}
 
-	public TblBookDataRecord(long bookRecordId, Date createTime) {
+	public BookDataRecord(long bookRecordId, Date createTime) {
 		this.bookRecordId = bookRecordId;
 		this.createTime = createTime;
 	}

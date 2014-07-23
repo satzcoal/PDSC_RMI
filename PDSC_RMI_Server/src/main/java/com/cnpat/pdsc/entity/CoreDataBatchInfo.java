@@ -11,17 +11,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_CoreDataBatchInfo", catalog = "PDSC_Management_DB")
-public class TblCoreDataBatchInfo implements java.io.Serializable {
+public class CoreDataBatchInfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = -303579121657850697L;
 	
 	private int dataType;
 	private String batchNo;
 
-	public TblCoreDataBatchInfo() {
+	public CoreDataBatchInfo() {
 	}
 
-	public TblCoreDataBatchInfo(int dataType, String batchNo) {
+	public CoreDataBatchInfo(int dataType, String batchNo) {
 		this.dataType = dataType;
 		this.batchNo = batchNo;
 	}

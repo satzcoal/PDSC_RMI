@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_UpdateMain", catalog = "PDSC_Management_DB")
-public class TblUpdateMain implements java.io.Serializable {
+public class UpdateMain implements java.io.Serializable {
 
 	private static final long serialVersionUID = -4973990127727936484L;
 
@@ -27,10 +27,10 @@ public class TblUpdateMain implements java.io.Serializable {
 	private Long rollbackSeq;
 	private int recordNum;
 
-	public TblUpdateMain() {
+	public UpdateMain() {
 	}
 
-	public TblUpdateMain(long globalSeq, long localSeq, int dataType,
+	public UpdateMain(long globalSeq, long localSeq, int dataType,
 			int opType, String batchNo, Date createTime, boolean rollbackFlag,
 			int recordNum) {
 		this.globalSeq = globalSeq;
@@ -43,7 +43,7 @@ public class TblUpdateMain implements java.io.Serializable {
 		this.recordNum = recordNum;
 	}
 
-	public TblUpdateMain(long globalSeq, long localSeq, int dataType,
+	public UpdateMain(long globalSeq, long localSeq, int dataType,
 			int opType, String batchNo, Date createTime, boolean rollbackFlag,
 			Long rollbackSeq, int recordNum) {
 		this.globalSeq = globalSeq;

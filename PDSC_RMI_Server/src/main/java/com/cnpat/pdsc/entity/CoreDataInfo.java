@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_CoreDataInfo", catalog = "PDSC_Management_DB")
-public class TblCoreDataInfo implements java.io.Serializable {
+public class CoreDataInfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = -9176612877121680046L;
 
@@ -25,10 +25,10 @@ public class TblCoreDataInfo implements java.io.Serializable {
 	private int totalNum;
 	private int totalBatch;
 
-	public TblCoreDataInfo() {
+	public CoreDataInfo() {
 	}
 
-	public TblCoreDataInfo(int dataType, String name, String detailTblName,
+	public CoreDataInfo(int dataType, String name, String detailTblName,
 			Date createTime, long currentSeq, int totalNum, int totalBatch) {
 		this.dataType = dataType;
 		this.name = name;
