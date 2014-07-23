@@ -7,4 +7,12 @@
 	<bean id="bookService" class="com.cnpat.pdsc.service.BookService">
 		<property name="ht" ref="hibernateTemplete" />
 	</bean>
+
+	<bean id="updateSummaryService" class="com.cnpat.pdsc.service.UpdateSummaryService">
+		<property name="ht" ref="hibernateTemplete" />
+	</bean>
+	
+	<bean id="updateDetailService" class="com.cnpat.pdsc.service.UpdateDetailService">
+		<property name="ht" ref="hibernateTemplete" />
+	</bean>
 </beans>

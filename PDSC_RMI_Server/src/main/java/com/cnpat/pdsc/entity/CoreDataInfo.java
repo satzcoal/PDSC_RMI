@@ -17,19 +17,37 @@ public class CoreDataInfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = -9176612877121680046L;
 
+	@Id
+	@Column(name = "DataType", unique = true, nullable = false)
 	private int dataType;
+
+	@Column(name = "Name", nullable = false, length = 20)
 	private String name;
+
+	@Column(name = "DetailTblName", nullable = false, length = 50)
 	private String detailTblName;
+
+	@Column(name = "DetailEntityName", nullable = false, length = 50)
+	private String detailEntityName;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CreateTime", nullable = false, length = 19)
 	private Date createTime;
-	private long currentSeq;
+
+	@Column(name = "CurrentSeq", nullable = false)
+	private int currentSeq;
+
+	@Column(name = "TotalNum", nullable = false)
 	private int totalNum;
+
+	@Column(name = "TotalBatch", nullable = false)
 	private int totalBatch;
 
 	public CoreDataInfo() {
 	}
 
 	public CoreDataInfo(int dataType, String name, String detailTblName,
-			Date createTime, long currentSeq, int totalNum, int totalBatch) {
+			Date createTime, int currentSeq, int totalNum, int totalBatch) {
 		this.dataType = dataType;
 		this.name = name;
 		this.detailTblName = detailTblName;
@@ -39,8 +57,6 @@ public class CoreDataInfo implements java.io.Serializable {
 		this.totalBatch = totalBatch;
 	}
 
-	@Id
-	@Column(name = "DataType", unique = true, nullable = false)
 	public int getDataType() {
 		return this.dataType;
 	}
@@ -49,7 +65,6 @@ public class CoreDataInfo implements java.io.Serializable {
 		this.dataType = dataType;
 	}
 
-	@Column(name = "Name", nullable = false, length = 20)
 	public String getName() {
 		return this.name;
 	}
@@ -58,7 +73,6 @@ public class CoreDataInfo implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "DetailTblName", nullable = false, length = 20)
 	public String getDetailTblName() {
 		return this.detailTblName;
 	}
@@ -67,8 +81,6 @@ public class CoreDataInfo implements java.io.Serializable {
 		this.detailTblName = detailTblName;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CreateTime", nullable = false, length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
 	}
@@ -77,16 +89,14 @@ public class CoreDataInfo implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "CurrentSeq", nullable = false)
-	public long getCurrentSeq() {
+	public int getCurrentSeq() {
 		return this.currentSeq;
 	}
 
-	public void setCurrentSeq(long currentSeq) {
+	public void setCurrentSeq(int currentSeq) {
 		this.currentSeq = currentSeq;
 	}
 
-	@Column(name = "TotalNum", nullable = false)
 	public int getTotalNum() {
 		return this.totalNum;
 	}
@@ -95,13 +105,20 @@ public class CoreDataInfo implements java.io.Serializable {
 		this.totalNum = totalNum;
 	}
 
-	@Column(name = "TotalBatch", nullable = false)
 	public int getTotalBatch() {
 		return this.totalBatch;
 	}
 
 	public void setTotalBatch(int totalBatch) {
 		this.totalBatch = totalBatch;
+	}
+
+	public String getDetailEntityName() {
+		return detailEntityName;
+	}
+
+	public void setDetailEntityName(String detailEntityName) {
+		this.detailEntityName = detailEntityName;
 	}
 
 }

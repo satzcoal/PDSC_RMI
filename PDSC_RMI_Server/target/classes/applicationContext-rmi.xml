@@ -15,4 +15,17 @@
 		<property name="serviceInterface" value="com.cnpat.pdsc.rmi.IndexBookService" />
 		<property name="registryPort" value="1199" />
 	</bean>
+	
+	<bean id="indexDataService" class="com.cnpat.pdsc.rmi.impl.IndexDataServiceImpl">
+		<property name="summaryService" ref="updateSummaryService" />
+		<property name="detailService" ref="updateDetailService" />
+	</bean>
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<!-- does not necessarily have to be the same name as the bean to be exported -->
+		<property name="serviceName" value="IndexDataService" />
+		<property name="service" ref="indexDataService" />
+		<property name="serviceInterface" value="com.cnpat.pdsc.rmi.IndexDataService" />
+		<property name="registryPort" value="1199" />
+	</bean>
 </beans>

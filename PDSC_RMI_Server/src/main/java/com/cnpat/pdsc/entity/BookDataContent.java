@@ -2,6 +2,7 @@ package com.cnpat.pdsc.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,17 +16,12 @@ public class BookDataContent implements java.io.Serializable {
 	private static final long serialVersionUID = -1001872973458953512L;
 
 	@Id
-	private long id;
-	private int dataType;
-
+	@GeneratedValue
 	@Column(name = "ID", nullable = false)
-	public long getId() {
-		return this.id;
-	}
+	private long id;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	@Column(name = "DataType", nullable = false)
+	private int dataType;
 
 	public int getDataType() {
 		return this.dataType;
@@ -34,4 +30,13 @@ public class BookDataContent implements java.io.Serializable {
 	public void setDataType(int dataType) {
 		this.dataType = dataType;
 	}
+
+	public final long getId() {
+		return id;
+	}
+
+	public final void setId(long id) {
+		this.id = id;
+	}
+
 }

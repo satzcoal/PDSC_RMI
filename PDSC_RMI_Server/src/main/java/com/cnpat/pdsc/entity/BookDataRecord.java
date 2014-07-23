@@ -1,9 +1,16 @@
 package com.cnpat.pdsc.entity;
 
 import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,36 +23,84 @@ import javax.persistence.TemporalType;
 public class BookDataRecord implements java.io.Serializable {
 
 	private static final long serialVersionUID = -5174323993825961838L;
-	
-	private long bookRecordId;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "ID", unique = true, nullable = false)
+	private long id;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CreateTime", nullable = false, length = 19)
 	private Date createTime;
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "Parent_ID", nullable = false)
+	private Set<BookDataRecordDetail> details;
+
+	@ManyToOne
+	@JoinColumn(name = "BookIns_ID")
+	private BookDataInfo bookIns;
+
+	@Column(name = "Url", nullable = false, length = 20)
+	private String url;
+
+	@Column(name = "ServiceType", nullable = false)
+	private int serviceType;
 
 	public BookDataRecord() {
 	}
 
-	public BookDataRecord(long bookRecordId, Date createTime) {
-		this.bookRecordId = bookRecordId;
+	public final String getUrl() {
+		return url;
+	}
+
+	public final void setUrl(String url) {
+		this.url = url;
+	}
+
+	public final int getServiceType() {
+		return serviceType;
+	}
+
+	public final void setServiceType(int serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public BookDataRecord(long id, Date createTime) {
+		this.id = id;
 		this.createTime = createTime;
 	}
 
-	@Id
-	@Column(name = "BookRecordID", unique = true, nullable = false)
-	public long getBookRecordId() {
-		return this.bookRecordId;
+	public long getId() {
+		return this.id;
 	}
 
-	public void setBookRecordId(long bookRecordId) {
-		this.bookRecordId = bookRecordId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CreateTime", nullable = false, length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
 	}
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public Set<BookDataRecordDetail> getDetails() {
+		return details;
+	}
+
+	public void setDetails(Set<BookDataRecordDetail> details) {
+		this.details = details;
+	}
+
+	public BookDataInfo getBookIns() {
+		return bookIns;
+	}
+
+	public void setBookIns(BookDataInfo bookIns) {
+		this.bookIns = bookIns;
 	}
 
 }

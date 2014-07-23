@@ -1,6 +1,7 @@
 package com.cnpat.pdsc.entity;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,66 +18,54 @@ public class UpdateMain implements java.io.Serializable {
 
 	private static final long serialVersionUID = -4973990127727936484L;
 
-	private long globalSeq;
-	private long localSeq;
+	@Id
+	@Column(name = "GlobalSeq", unique = true, nullable = false)
+	private int globalSeq;
+
+	@Column(name = "LocalSeq", nullable = false)
+	private int localSeq;
+
+	@Column(name = "DataType", nullable = false)
 	private int dataType;
+
+	@Column(name = "OpType", nullable = false)
 	private int opType;
+
+	@Column(name = "BatchNo", nullable = false, length = 20)
 	private String batchNo;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CreateTime", nullable = false, length = 19)
 	private Date createTime;
+
+	@Column(name = "RollbackFlag", nullable = false)
 	private boolean rollbackFlag;
+
+	@Column(name = "RollbackSeq")
 	private Long rollbackSeq;
+
+	@Column(name = "RecordNum", nullable = false)
 	private int recordNum;
 
 	public UpdateMain() {
 	}
 
-	public UpdateMain(long globalSeq, long localSeq, int dataType,
-			int opType, String batchNo, Date createTime, boolean rollbackFlag,
-			int recordNum) {
-		this.globalSeq = globalSeq;
-		this.localSeq = localSeq;
-		this.dataType = dataType;
-		this.opType = opType;
-		this.batchNo = batchNo;
-		this.createTime = createTime;
-		this.rollbackFlag = rollbackFlag;
-		this.recordNum = recordNum;
-	}
-
-	public UpdateMain(long globalSeq, long localSeq, int dataType,
-			int opType, String batchNo, Date createTime, boolean rollbackFlag,
-			Long rollbackSeq, int recordNum) {
-		this.globalSeq = globalSeq;
-		this.localSeq = localSeq;
-		this.dataType = dataType;
-		this.opType = opType;
-		this.batchNo = batchNo;
-		this.createTime = createTime;
-		this.rollbackFlag = rollbackFlag;
-		this.rollbackSeq = rollbackSeq;
-		this.recordNum = recordNum;
-	}
-
-	@Id
-	@Column(name = "GlobalSeq", unique = true, nullable = false)
-	public long getGlobalSeq() {
+	public int getGlobalSeq() {
 		return this.globalSeq;
 	}
 
-	public void setGlobalSeq(long globalSeq) {
+	public void setGlobalSeq(int globalSeq) {
 		this.globalSeq = globalSeq;
 	}
 
-	@Column(name = "LocalSeq", nullable = false)
-	public long getLocalSeq() {
+	public int getLocalSeq() {
 		return this.localSeq;
 	}
 
-	public void setLocalSeq(long localSeq) {
+	public void setLocalSeq(int localSeq) {
 		this.localSeq = localSeq;
 	}
 
-	@Column(name = "DataType", nullable = false)
 	public int getDataType() {
 		return this.dataType;
 	}
@@ -85,7 +74,6 @@ public class UpdateMain implements java.io.Serializable {
 		this.dataType = dataType;
 	}
 
-	@Column(name = "OpType", nullable = false)
 	public int getOpType() {
 		return this.opType;
 	}
@@ -94,7 +82,6 @@ public class UpdateMain implements java.io.Serializable {
 		this.opType = opType;
 	}
 
-	@Column(name = "BatchNo", nullable = false, length = 20)
 	public String getBatchNo() {
 		return this.batchNo;
 	}
@@ -103,8 +90,6 @@ public class UpdateMain implements java.io.Serializable {
 		this.batchNo = batchNo;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CreateTime", nullable = false, length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
 	}
@@ -113,7 +98,6 @@ public class UpdateMain implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "RollbackFlag", nullable = false)
 	public boolean isRollbackFlag() {
 		return this.rollbackFlag;
 	}
@@ -122,7 +106,6 @@ public class UpdateMain implements java.io.Serializable {
 		this.rollbackFlag = rollbackFlag;
 	}
 
-	@Column(name = "RollbackSeq")
 	public Long getRollbackSeq() {
 		return this.rollbackSeq;
 	}
@@ -131,7 +114,6 @@ public class UpdateMain implements java.io.Serializable {
 		this.rollbackSeq = rollbackSeq;
 	}
 
-	@Column(name = "RecordNum", nullable = false)
 	public int getRecordNum() {
 		return this.recordNum;
 	}

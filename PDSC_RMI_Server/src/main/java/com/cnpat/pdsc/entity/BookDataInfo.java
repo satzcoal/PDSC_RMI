@@ -3,9 +3,14 @@ package com.cnpat.pdsc.entity;
 // Generated 2014-7-22 16:49:35 by Hibernate Tools 4.0.0
 
 import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,37 +24,34 @@ public class BookDataInfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8138325569112691658L;
 
-	private long bookId;
-	private String sourceIp;
-	private int status;
-	private String descript;
-	private Date createTime;
-	private Date modifyTime;
-
-	public BookDataInfo() {
-	}
-
-	public BookDataInfo(long bookId, String sourceIp, int status,
-			Date createTime, Date modifyTime) {
-		this.bookId = bookId;
-		this.sourceIp = sourceIp;
-		this.status = status;
-		this.createTime = createTime;
-		this.modifyTime = modifyTime;
-	}
-
-	public BookDataInfo(long bookId, String sourceIp, int status,
-			String descript, Date createTime, Date modifyTime) {
-		this.bookId = bookId;
-		this.sourceIp = sourceIp;
-		this.status = status;
-		this.descript = descript;
-		this.createTime = createTime;
-		this.modifyTime = modifyTime;
-	}
-
 	@Id
 	@Column(name = "BookID", unique = true, nullable = false)
+	private long bookId;
+
+	@Column(name = "Url", nullable = false, length = 20)
+	private String url;
+
+	@Column(name = "Status", nullable = false)
+	private int status;
+
+	@Column(name = "ServiceType", nullable = false)
+	private int serviceType;
+
+	@Column(name = "Descript", length = 100)
+	private String descript;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CreateTime", nullable = false, length = 19)
+	private Date createTime;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "ModifyTime", length = 19)
+	private Date modifyTime;
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "Parent_ID", nullable = false)
+	private Set<BookDataContent> contents;
+
 	public long getBookId() {
 		return this.bookId;
 	}
@@ -58,16 +60,14 @@ public class BookDataInfo implements java.io.Serializable {
 		this.bookId = bookId;
 	}
 
-	@Column(name = "SourceIP", nullable = false, length = 20)
-	public String getSourceIp() {
-		return this.sourceIp;
+	public final String getUrl() {
+		return url;
 	}
 
-	public void setSourceIp(String sourceIp) {
-		this.sourceIp = sourceIp;
+	public final void setUrl(String url) {
+		this.url = url;
 	}
 
-	@Column(name = "Status", nullable = false)
 	public int getStatus() {
 		return this.status;
 	}
@@ -76,7 +76,6 @@ public class BookDataInfo implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "Descript", length = 100)
 	public String getDescript() {
 		return this.descript;
 	}
@@ -85,8 +84,6 @@ public class BookDataInfo implements java.io.Serializable {
 		this.descript = descript;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CreateTime", nullable = false, length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
 	}
@@ -95,14 +92,28 @@ public class BookDataInfo implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "ModifyTime", nullable = false, length = 19)
 	public Date getModifyTime() {
 		return this.modifyTime;
 	}
 
 	public void setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
+	}
+
+	public int getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(int serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public final Set<BookDataContent> getContents() {
+		return contents;
+	}
+
+	public final void setContents(Set<BookDataContent> contents) {
+		this.contents = contents;
 	}
 
 }
