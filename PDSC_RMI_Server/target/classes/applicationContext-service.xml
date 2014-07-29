@@ -5,14 +5,17 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="bookService" class="com.cnpat.pdsc.service.BookService">
-		<property name="ht" ref="hibernateTemplete" />
+		<property name="ht" ref="manageHibernateTemplete" />
 	</bean>
 
 	<bean id="updateSummaryService" class="com.cnpat.pdsc.service.UpdateSummaryService">
-		<property name="ht" ref="hibernateTemplete" />
+		<property name="ht" ref="manageHibernateTemplete" />
 	</bean>
-	
+
 	<bean id="updateDetailService" class="com.cnpat.pdsc.service.UpdateDetailService">
-		<property name="ht" ref="hibernateTemplete" />
+		<property name="xmlRootPath">
+			<value>${pdsc.patentXMLRootPath}</value>
+		</property>
+		<property name="dataht" ref="dataHibernateTemplete" />
 	</bean>
 </beans>

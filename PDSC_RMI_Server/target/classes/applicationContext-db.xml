@@ -1,0 +1,132 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<bean id="manageSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.password">
+					${manage.hibernate.connection.password}
+				</prop>
+				<prop key="hibernate.connection.username">
+					${manage.hibernate.connection.username}
+				</prop>
+				<prop key="hibernate.connection.url">
+					${manage.hibernate.connection.url}
+				</prop>
+				<prop key="hibernate.connection.driver_class">
+					${manage.hibernate.connection.driver_class}
+				</prop>
+				<prop key="hibernate.dialect">
+					${manage.hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${manage.hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">
+					${manage.hibernate.hbm2ddl.auto}
+				</prop>
+				<prop key="hibernate.connection.provider_class">
+					${manage.hibernate.connection.provider_class}
+				</prop>
+				<prop key="hibernate.connection.autoReconnect">
+					${manage.hibernate.connection.autoReconnect}
+				</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.cnpat.pdsc.entity</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="manageHibernateTemplete" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="manageSessionFactory"></property>
+	</bean>
+
+	<!-- 声明式事务 -->
+	<bean id="manageTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="manageSessionFactory" />
+	</bean>
+
+	<tx:advice id="manageTxAdvice" transaction-manager="manageTransactionManager">
+		<tx:attributes>
+			<tx:method name="increasePrice*" propagation="REQUIRED" />
+			<tx:method name="someOtherBusinessMethod" propagation="REQUIRES_NEW" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<bean id="dataSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.password">
+					${data.hibernate.connection.password}
+				</prop>
+				<prop key="hibernate.connection.username">
+					${data.hibernate.connection.username}
+				</prop>
+				<prop key="hibernate.connection.url">
+					${data.hibernate.connection.url}
+				</prop>
+				<prop key="hibernate.connection.driver_class">
+					${data.hibernate.connection.driver_class}
+				</prop>
+				<prop key="hibernate.dialect">
+					${data.hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${data.hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">
+					${data.hibernate.hbm2ddl.auto}
+				</prop>
+				<prop key="hibernate.connection.provider_class">
+					${data.hibernate.connection.provider_class}
+				</prop>
+				<prop key="hibernate.connection.autoReconnect">
+					${data.hibernate.connection.autoReconnect}
+				</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.cnpat.pdsc.data.entity</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataHibernateTemplete" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="dataSessionFactory"></property>
+	</bean>
+
+	<!-- 声明式事务 -->
+	<bean id="dataTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="dataSessionFactory" />
+	</bean>
+
+	<tx:advice id="dataTxAdvice" transaction-manager="dataTransactionManager">
+		<tx:attributes>
+			<tx:method name="increasePrice*" propagation="REQUIRED" />
+			<tx:method name="someOtherBusinessMethod" propagation="REQUIRES_NEW" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="productServiceMethods" expression="execution(* com.cnpat..*.*(..))" />
+		<aop:advisor advice-ref="manageTxAdvice" pointcut-ref="productServiceMethods" />
+		<aop:advisor advice-ref="dataTxAdvice" pointcut-ref="productServiceMethods" />
+	</aop:config>
+</beans>

@@ -8,6 +8,13 @@ public class CommonEntry implements Serializable {
 	private String id;
 	private Object entryBean;
 
+	public CommonEntry() {
+	}
+
+	public CommonEntry(String ins, Object entryBean) {
+		this.entryBean = entryBean;
+	}
+
 	public final String getId() {
 		return id;
 	}
