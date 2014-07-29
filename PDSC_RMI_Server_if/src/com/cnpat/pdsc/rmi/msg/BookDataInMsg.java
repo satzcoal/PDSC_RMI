@@ -34,4 +34,11 @@ public class BookDataInMsg extends CommonMsg implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	@Override
+	public String toString() {
+		return "BookDataInMsg [bookID=" + bookID + ", bookInfoList="
+				+ listToString(bookInfoList) + ", url=" + url + ", resStatus="
+				+ resStatus + ", errMsg=" + errMsg + "]";
+	}
 }

@@ -24,4 +24,10 @@ public class BookInfo implements Serializable {
 	public void setOpType(int opType) {
 		this.opType = opType;
 	}
+
+	@Override
+	public String toString() {
+		return "BookInfo [bookDataID=" + bookDataID + ", opType=" + opType
+				+ "]";
+	}
 }

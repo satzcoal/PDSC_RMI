@@ -26,4 +26,11 @@ public class UpdateDetailInMsg extends CommonMsg implements Serializable {
 		this.idList = idList;
 	}
 
+	@Override
+	public String toString() {
+		return "UpdateDetailInMsg [dataType=" + dataType + ", idList="
+				+ listToString(idList) + ", resStatus=" + resStatus
+				+ ", errMsg=" + errMsg + "]";
+	}
+
 }

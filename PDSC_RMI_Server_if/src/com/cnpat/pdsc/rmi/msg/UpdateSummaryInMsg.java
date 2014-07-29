@@ -25,4 +25,10 @@ public class UpdateSummaryInMsg extends CommonMsg implements Serializable {
 		this.seq = seq;
 	}
 
+	@Override
+	public String toString() {
+		return "UpdateSummaryInMsg [dataType=" + dataType + ", seq=" + seq
+				+ ", resStatus=" + resStatus + ", errMsg=" + errMsg + "]";
+	}
+
 }

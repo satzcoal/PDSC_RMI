@@ -62,4 +62,13 @@ public class UpdateSummaryOutMsg extends CommonMsg implements Serializable {
 	public void setIdList(List<String> idList) {
 		this.idList = idList;
 	}
+
+	@Override
+	public String toString() {
+		return "UpdateSummaryOutMsg [batchNo=" + batchNo + ", count=" + count
+				+ ", idList=" + listToString(idList) + ", seq=" + seq
+				+ ", opType=" + opType + ", createTime=" + createTime
+				+ ", resStatus=" + resStatus + ", errMsg=" + errMsg + "]";
+	}
+
 }

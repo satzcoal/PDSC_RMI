@@ -20,8 +20,13 @@ public class IndexBookServiceImpl implements IndexBookService {
 
 	public BookDataOutMsg bookData(BookDataInMsg req) throws RemoteException {
 
-		logger.debug("Book Data Start: " + req.toString());
 		BookDataOutMsg res = new BookDataOutMsg();
+
+		if (req.getUrl() == null || req.getBookInfoList() == null) {
+			res.setResStatus(1);
+			res.setErrMsg("输入参数不合法！");
+			return res;
+		}
 
 		try {
 			res = service.bookData(req, Consts.SERVICE_TYPE_RMI);
@@ -30,7 +35,6 @@ public class IndexBookServiceImpl implements IndexBookService {
 			ex.printStackTrace();
 		}
 
-		logger.debug("Book Data End: " + res.toString());
 		return res;
 	}
 

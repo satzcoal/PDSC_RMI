@@ -16,4 +16,11 @@ public class CurrentUpdateOutMsg extends CommonMsg implements Serializable {
 	public void setCurrentSeqMap(Map<Integer, Integer> currentSeqMap) {
 		this.currentSeqMap = currentSeqMap;
 	}
+
+	@Override
+	public String toString() {
+		return "CurrentUpdateOutMsg [currentSeqMap="
+				+ mapToString(currentSeqMap) + ", resStatus=" + resStatus
+				+ ", errMsg=" + errMsg + "]";
+	}
 }

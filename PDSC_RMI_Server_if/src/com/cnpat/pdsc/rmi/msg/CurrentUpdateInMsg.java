@@ -16,4 +16,11 @@ public class CurrentUpdateInMsg extends CommonMsg implements Serializable {
 	public void setDataTypeList(List<Integer> dataTypeList) {
 		this.dataTypeList = dataTypeList;
 	}
+
+	@Override
+	public String toString() {
+		return "CurrentUpdateInMsg [dataTypeList=" + listToString(dataTypeList)
+				+ ", resStatus=" + resStatus + ", errMsg=" + errMsg + "]";
+	}
+
 }

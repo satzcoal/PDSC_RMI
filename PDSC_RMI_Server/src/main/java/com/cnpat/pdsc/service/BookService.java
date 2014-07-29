@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.cnpat.pdsc.common.Consts;
@@ -18,6 +20,8 @@ import com.cnpat.pdsc.rmi.msg.BookDataInMsg;
 import com.cnpat.pdsc.rmi.msg.BookDataOutMsg;
 import com.cnpat.pdsc.rmi.msg.BookInfo;
 
+@Configuration
+@EnableAspectJAutoProxy
 public class BookService {
 
 	private HibernateTemplate ht;

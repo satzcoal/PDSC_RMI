@@ -8,6 +8,8 @@ import net.lingala.zip4j.model.FileHeader;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import cn.com.cnpat.cprs.ds.xml.ExtraXMLData;
@@ -15,11 +17,15 @@ import cn.com.cnpat.cprs.ds.xml.ExtraXMLDataPublic;
 import cn.com.cnpat.cprs.rmi.bean.CurrentBean;
 
 import com.cnpat.pdsc.common.Consts;
+import com.cnpat.pdsc.data.entity.Applicant;
 import com.cnpat.pdsc.data.entity.Biblio;
+import com.cnpat.pdsc.data.entity.Inventor;
 import com.cnpat.pdsc.rmi.msg.UpdateDetailInMsg;
 import com.cnpat.pdsc.rmi.msg.UpdateDetailOutMsg;
 import com.cnpat.pdsc.rmi.msg.entry.CommonEntry;
 
+@Configuration
+@EnableAspectJAutoProxy
 public class UpdateDetailService {
 
 	private static final Logger logger = LogManager
@@ -100,21 +106,32 @@ public class UpdateDetailService {
 			Biblio bib = dataht.get(Biblio.class, ins);
 			CurrentBean current = new CurrentBean();
 			current.setAge_cod(bib.getAgent().getAgency_code());
-			// current.setApp(null);
-			// current.setApp_add(null);
-			// current.setAre_cod(are_cod);
-			current.setApp_dat(bib.getFiling_date());
+			List<String> applist = new LinkedList<String>();
+			for (Applicant app : bib.getApplicant()) {
+				applist.add(app.getName());
+				if (app.getSeq() == 1) {
+					current.setApp_add(app.getAddress());
+					current.setAre_cod(app.getProvince());
+				}
+			}
+			current.setApp(null);
+			current.setApp_dat(Integer.parseInt(bib.getFiling_date()));
 			current.setApp_no(bib.getFiling_no());
 			current.setDid(ins);
-			current.setGra_dat(bib.getPub_date());
+			current.setGra_dat(Integer.parseInt(bib.getPub_date()));
 			current.setGra_no(bib.getPub_no());
 			current.setId(null);
-			// current.setInv(null);
-			// current.setPri_cou();
-			// current.setPri_dat(pri_dat);
-			current.setPub_dat(bib.getPub_date());
+			List<String> invlist = new LinkedList<String>();
+			for (Inventor inv : bib.getInventors()) {
+				invlist.add(inv.getName());
+			}
+			current.setInv(invlist);
+			current.setPri_cou(bib.getPrioritys().get(0).getPri_country());
+			current.setPri_dat(Integer.parseInt(bib.getPrioritys().get(0)
+					.getPri_date()));
+			current.setPub_dat(Integer.parseInt(bib.getPub_date()));
 			current.setPub_no(bib.getPub_no());
-			// current.setSta(sta);
+			current.setSta(bib.getCur_status());
 			current.setTit(bib.getTitle());
 			// current.setTyp(typ);
 

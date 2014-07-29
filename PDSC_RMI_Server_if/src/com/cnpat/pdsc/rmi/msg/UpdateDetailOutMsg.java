@@ -18,4 +18,11 @@ public class UpdateDetailOutMsg extends CommonMsg implements Serializable {
 	public void setResList(List<CommonEntry> resList) {
 		this.resList = resList;
 	}
+
+	@Override
+	public String toString() {
+		return "UpdateDetailOutMsg [resList=" + listToString(resList)
+				+ ", resStatus=" + resStatus + ", errMsg=" + errMsg + "]";
+	}
+
 }

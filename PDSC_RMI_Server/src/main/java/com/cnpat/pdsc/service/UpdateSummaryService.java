@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.cnpat.pdsc.common.Consts;
@@ -16,6 +18,8 @@ import com.cnpat.pdsc.rmi.msg.CurrentUpdateOutMsg;
 import com.cnpat.pdsc.rmi.msg.UpdateSummaryInMsg;
 import com.cnpat.pdsc.rmi.msg.UpdateSummaryOutMsg;
 
+@Configuration
+@EnableAspectJAutoProxy
 public class UpdateSummaryService {
 
 	private HibernateTemplate ht;
