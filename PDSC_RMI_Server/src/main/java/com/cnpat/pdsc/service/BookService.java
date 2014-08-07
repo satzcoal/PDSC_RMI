@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -25,6 +27,8 @@ import com.cnpat.pdsc.rmi.msg.BookInfo;
 public class BookService {
 
 	private HibernateTemplate ht;
+	private static final Logger logger = LogManager
+			.getLogger(BookService.class);
 
 	public BookDataOutMsg bookData(BookDataInMsg req, int serviceType) {
 
@@ -66,7 +70,10 @@ public class BookService {
 		for (BookDataContent ins : bookInfo.getContents()) {
 			// DAO
 			CoreDataInfo cdi = ht.get(CoreDataInfo.class, ins.getDataType());
-
+			if (cdi == null) {
+				logger.error("DATATYPE NOT FOUND!");
+				continue;
+			}
 			seqMap.put(ins.getDataType(), cdi.getCurrentSeq());
 		}
 
@@ -87,6 +94,9 @@ public class BookService {
 			bookInfo.setUrl(record.getUrl());
 		} else {
 			bookInfo.setModifyTime(record.getCreateTime());
+			for (BookDataContent ins : bookInfo.getContents()) {
+				ht.delete(ins);
+			}
 			bookInfo.getContents().clear();
 		}
 

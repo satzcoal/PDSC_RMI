@@ -28,16 +28,14 @@ public class IndexDataServiceTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"context.xml");
 		UpdateDetailInMsg msg = new UpdateDetailInMsg();
-		msg.setDataType(0);
+		msg.setDataType(1);
 		List<String> idlist = new LinkedList<String>();
-		idlist.add("201210208835");
+		idlist.add("20128000118820130102");
 		msg.setIdList(idlist);
 		IndexDataServiceTest s = (IndexDataServiceTest) ctx.getBean("testdata");
 		UpdateDetailOutMsg out = s.getIndexDataService().getUpdateDetail(msg);
+		System.out.println(out);
 
-		for (CommonEntry ins : out.getResList()) {
-			System.out.println(ins.getEntryBean());
-		}
 		((ClassPathXmlApplicationContext) ctx).close();
 	}
 

@@ -9,7 +9,8 @@
 	</bean>
 
 	<bean id="indexBookService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-		<property name="serviceUrl" value="rmi://localhost:1199/IndexBookService" />
+		<property name="serviceUrl" value="rmi://10.75.3.66:1199/IndexBookService" />
+		<!-- <property name="serviceUrl" value="rmi://localhost:1199/IndexBookService" /> -->
 		<property name="serviceInterface" value="com.cnpat.pdsc.rmi.IndexBookService" />
 	</bean>
 
@@ -18,7 +19,8 @@
 	</bean>
 
 	<bean id="indexDataService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-		<property name="serviceUrl" value="rmi://localhost:1199/IndexDataService" />
+ 		<property name="serviceUrl" value="rmi://10.75.3.66:1199/IndexDataService" /> 
+<!--		<property name="serviceUrl" value="rmi://localhost:1199/IndexDataService" />-->
 		<property name="serviceInterface" value="com.cnpat.pdsc.rmi.IndexDataService" />
 	</bean>
 

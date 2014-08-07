@@ -22,16 +22,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/PDSC_RMI_Server_if"/>
-	<classpathentry kind="lib" path="C:/Users/Lee/Desktop/rmiBean.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lee/Desktop/rmiService.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/DS_BeanGen"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/PDSC_Entity"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -11,7 +11,8 @@ public class CommonEntry implements Serializable {
 	public CommonEntry() {
 	}
 
-	public CommonEntry(String ins, Object entryBean) {
+	public CommonEntry(String id, Object entryBean) {
+		this.id = id;
 		this.entryBean = entryBean;
 	}
 
@@ -29,5 +30,10 @@ public class CommonEntry implements Serializable {
 
 	public final void setEntryBean(Object entryBean) {
 		this.entryBean = entryBean;
+	}
+
+	@Override
+	public String toString() {
+		return "CommonEntry [id=" + id + ", entryBean=" + entryBean + "]";
 	}
 }

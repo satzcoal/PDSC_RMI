@@ -6,6 +6,6 @@ public class PdscStarter {
 
 	@SuppressWarnings("resource")
 	public static void main(String... args) {
-		new ClassPathXmlApplicationContext("applicationContext*.xml");
+		new ClassPathXmlApplicationContext("classpath*:config/applicationContext*.xml");
 	}
 }

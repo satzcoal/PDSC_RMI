@@ -21,8 +21,14 @@ public class IndexDataServiceImpl implements IndexDataService {
 	private UpdateDetailService detailService;
 
 	public CurrentUpdateOutMsg getCurrentUpdate(CurrentUpdateInMsg req) {
-		logger.debug("Get Current Update Start: " + req.toString());
+
 		CurrentUpdateOutMsg res = new CurrentUpdateOutMsg();
+		if (req == null || req.getDataTypeList() == null
+				|| req.getDataTypeList().size() == 0) {
+			res.setResStatus(1);
+			res.setErrMsg("输入参数不合法！");
+			return res;
+		}
 
 		try {
 			res = summaryService.getCurrentUpdate(req);
@@ -31,13 +37,17 @@ public class IndexDataServiceImpl implements IndexDataService {
 			ex.printStackTrace();
 		}
 
-		logger.debug("Get Current Update End: " + res.toString());
 		return res;
 	}
 
 	public UpdateSummaryOutMsg getUpdateSummary(UpdateSummaryInMsg req) {
-		logger.debug("Get Update Summary Start: " + req.toString());
 		UpdateSummaryOutMsg res = new UpdateSummaryOutMsg();
+
+		if (req == null) {
+			res.setResStatus(1);
+			res.setErrMsg("输入参数不合法！");
+			return res;
+		}
 
 		try {
 			res = summaryService.getUpdateSummary(req);
@@ -46,13 +56,18 @@ public class IndexDataServiceImpl implements IndexDataService {
 			ex.printStackTrace();
 		}
 
-		logger.debug("Get Update Summary End: " + res.toString());
 		return res;
 	}
 
 	public UpdateDetailOutMsg getUpdateDetail(UpdateDetailInMsg req) {
-		logger.debug("Get Update Detail Start: " + req.toString());
 		UpdateDetailOutMsg res = new UpdateDetailOutMsg();
+
+		if (req == null || req.getIdList() == null
+				|| req.getIdList().size() == 0) {
+			res.setResStatus(1);
+			res.setErrMsg("输入参数不合法！");
+			return res;
+		}
 
 		try {
 			res = detailService.getUpdateDetail(req);
@@ -61,7 +76,6 @@ public class IndexDataServiceImpl implements IndexDataService {
 			ex.printStackTrace();
 		}
 
-		logger.debug("Get Update Summary End: " + res.toString());
 		return res;
 	}
 

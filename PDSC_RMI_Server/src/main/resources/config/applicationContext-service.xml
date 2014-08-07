@@ -16,6 +16,9 @@
 		<property name="xmlRootPath">
 			<value>${pdsc.patentXMLRootPath}</value>
 		</property>
+		<property name="tmpRootPath">
+			<value>${pdsc.tempPath}</value>
+		</property>
 		<property name="dataht" ref="dataHibernateTemplete" />
 	</bean>
 </beans>

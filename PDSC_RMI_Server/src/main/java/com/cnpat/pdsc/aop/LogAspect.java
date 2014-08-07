@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 public class LogAspect {
 
 	@Around("within(com.cnpat.pdsc.rmi.impl.*)")
-	public Object serviceInOutLogger(ProceedingJoinPoint pjp) throws Throwable {
+	public Object serviceInOutLogger(ProceedingJoinPoint pjp) {
 
 		Logger logger = LogManager.getLogger(pjp.getTarget().getClass());
 
@@ -21,7 +21,13 @@ public class LogAspect {
 			logger.debug(ins);
 		}
 
-		Object retVal = pjp.proceed();
+		Object retVal = null;
+		try {
+			retVal = pjp.proceed();
+		} catch (Throwable ex) {
+			ex.printStackTrace();
+			logger.error(ex.getMessage());
+		}
 
 		logger.debug("result:");
 		logger.debug(retVal);

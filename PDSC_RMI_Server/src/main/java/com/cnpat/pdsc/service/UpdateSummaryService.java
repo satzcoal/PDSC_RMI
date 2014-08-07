@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -24,13 +26,19 @@ public class UpdateSummaryService {
 
 	private HibernateTemplate ht;
 
+	private static final Logger logger = LogManager
+			.getLogger(UpdateSummaryService.class);
+
 	public CurrentUpdateOutMsg getCurrentUpdate(CurrentUpdateInMsg req) {
 
 		Map<Integer, Integer> seqMap = new HashMap<Integer, Integer>();
 		for (int ins : req.getDataTypeList()) {
 			// DAO
 			CoreDataInfo cdi = ht.get(CoreDataInfo.class, ins);
-
+			if (cdi == null) {
+				logger.error("DATATYPE: " + ins + " NOT FOUND");
+				continue;
+			}
 			seqMap.put(ins, cdi.getCurrentSeq());
 		}
 
@@ -42,21 +50,30 @@ public class UpdateSummaryService {
 
 	public UpdateSummaryOutMsg getUpdateSummary(UpdateSummaryInMsg req) {
 
+		UpdateSummaryOutMsg res = new UpdateSummaryOutMsg();
 		CoreDataInfo cdi = ht.get(CoreDataInfo.class, req.getDataType());
+		if (cdi == null) {
+			logger.error("DATATYPE: " + req.getDataType() + " NOT FOUND!");
+			res.setResStatus(1);
+			return res;
+		}
 		String entityName = cdi.getDetailEntityName();
 
 		List<?> tmp = ht.find(
 				"from UpdateMain where localSeq = ? and dataType = ?",
 				req.getSeq(), req.getDataType());
 		if (tmp == null || tmp.size() == 0) {
-			// TODO
+			logger.error("DATATYPE: " + req.getDataType());
+			logger.error("LOCAL SEQ: " + req.getSeq());
+			res.setErrMsg("SEQ DATATYPE ERROR!");
+			res.setResStatus(1);
+			return res;
 		}
 		UpdateMain main = (UpdateMain) tmp.get(0);
 
 		List<?> list = ht.find("from " + entityName + " where seq = ?",
 				req.getSeq());
 
-		UpdateSummaryOutMsg res = new UpdateSummaryOutMsg();
 		res.setBatchNo(main.getBatchNo());
 		res.setCount(main.getRecordNum());
 		res.setCreateTime(main.getCreateTime());

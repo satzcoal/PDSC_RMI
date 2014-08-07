@@ -22,7 +22,8 @@ public class IndexBookServiceImpl implements IndexBookService {
 
 		BookDataOutMsg res = new BookDataOutMsg();
 
-		if (req.getUrl() == null || req.getBookInfoList() == null) {
+		if (req == null || req.getUrl() == null
+				|| req.getBookInfoList() == null) {
 			res.setResStatus(1);
 			res.setErrMsg("输入参数不合法！");
 			return res;

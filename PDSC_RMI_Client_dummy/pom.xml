@@ -11,5 +11,10 @@
 			<artifactId>spring-context</artifactId>
 			<version>3.2.8.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>PDSC_Entity</groupId>
+			<artifactId>PDSC_Entity</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

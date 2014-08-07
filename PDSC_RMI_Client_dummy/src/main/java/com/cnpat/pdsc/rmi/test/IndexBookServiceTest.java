@@ -22,14 +22,15 @@ public class IndexBookServiceTest {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"context.xml");
-		IndexBookServiceTest test = (IndexBookServiceTest) ctx.getBean("testbook");
+		IndexBookServiceTest test = (IndexBookServiceTest) ctx
+				.getBean("testbook");
 		try {
 			BookDataInMsg inmsg = new BookDataInMsg();
-			inmsg.setUrl("localhost");
+			inmsg.setUrl("10.75.3.123");
 			List<BookInfo> list = new LinkedList<BookInfo>();
 			BookInfo info = new BookInfo();
 			info.setBookDataID(1);
-			info.setOpType(1);
+			info.setOpType(11);
 			list.add(info);
 			info = new BookInfo();
 			info.setBookDataID(2);
@@ -37,11 +38,7 @@ public class IndexBookServiceTest {
 			list.add(info);
 			inmsg.setBookInfoList(list);
 			BookDataOutMsg outmsg = test.indexBookService.bookData(inmsg);
-
-			for (int ins : outmsg.getCurrentSeqMap().keySet()) {
-				System.out.println("DataContext: " + ins + " CurrentSeq: "
-						+ outmsg.getCurrentSeqMap().get(ins));
-			}
+			System.out.println(outmsg.toString());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
